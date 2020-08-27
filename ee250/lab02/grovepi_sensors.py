@@ -25,13 +25,14 @@ sys.path.append('../../Software/Python/')
 sys.path.append('../../Software/Python/grove_rgb_lcd')
 
 import grovepi
-from grove_rgb_lcd import *
+from grove_rgb_lcd import*
 
 """This if-statement checks if you are running this python file directly. That 
 is, if you run `python3 grovepi_sensors.py` in terminal, this if-statement will 
 be true"""
 if __name__ == '__main__':
     PORT = 4    # D4
+    setText("Hello World")
 
     while True:
         #So we do not poll the sensors too quickly which may introduce noise,
@@ -39,3 +40,4 @@ if __name__ == '__main__':
         time.sleep(0.2)
 
         print(grovepi.ultrasonicRead(PORT))
+        
