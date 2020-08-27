@@ -1,6 +1,7 @@
 """ EE 250L Lab 02: GrovePi Sensors
 
-List team members here.
+Daniel Briones
+Dfbrione@usc.edu
 
 Insert Github repository link here.
 """
@@ -16,6 +17,7 @@ performance. Because of this, you will not find this in the default directories.
 """
 import sys
 import time
+
 # By appending the folder of all the GrovePi libraries to the system path here,
 # we are successfully `import grovepi`
 sys.path.append('../../Software/Python/')
@@ -23,6 +25,7 @@ sys.path.append('../../Software/Python/')
 sys.path.append('../../Software/Python/grove_rgb_lcd')
 
 import grovepi
+from grove_rgb_lcd import *
 
 """This if-statement checks if you are running this python file directly. That 
 is, if you run `python3 grovepi_sensors.py` in terminal, this if-statement will 
