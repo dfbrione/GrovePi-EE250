@@ -34,7 +34,7 @@ def splash_screen(): #Opening screen that displays the lab number and title
 
 def not_in_range_screen(threshold_value, curr_ranger_output): #Display screen stating current threshold and ultrasonic range output
     setRGB(0,255,0) #Set the backlight as green 
-    setText_norefresh(" " + str(threshold_value) + "cm" + "\n " + str(curr_ranger_output) + "cm") 
+    setText_norefresh(" " + str(threshold_value) + "cm  " + "\n " + str(curr_ranger_output) + "cm") 
     
 def in_range_screen(threshold_value, curr_ranger_output): #Display screen stating object is in range, current threshold, and ranger value
     setRGB(255,0,0) #Set the backlight as red
