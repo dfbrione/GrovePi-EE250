@@ -34,14 +34,11 @@ def splash_screen():
 
 def not_in_range_screen(threshold_value, curr_ranger_output):
     setRGB(0,255,0) #Set the backlight as green 
-    setText_norefresh(" " + str(threshold_value) + "cm")
-    setText_norefresh("\n " + str(curr_ranger_output) + "cm")
-
+    setText_norefresh(" " + str(threshold_value) + "cm" + "\n " + str(curr_ranger_output) + "cm")
+    
 def in_range_screen(threshold_value, curr_ranger_output):
     setRGB(255,0,0)
-    setText_norefresh(str(threshold_value) + "cm OBJ PRES")
-    setText_norefresh("\n " + str(curr_ranger_output) + "cm")
-    
+    setText_norefresh(str(threshold_value) + "cm OBJ PRES" + "\n " + str(curr_ranger_output) + "cm")
 
 """This if-statement checks if you are running this python file directly. That 
 is, if you run `python3 grovepi_sensors.py` in terminal, this if-statement will 
@@ -50,10 +47,8 @@ if __name__ == '__main__':
     PORT = 4    # D4
     pot = 0 #Analog port A0
     grovepi.pinMode(pot, "INPUT")
-    
-
-
     splash_screen()
+    state = 0
 
     while True:
         #So we do not poll the sensors too quickly which may introduce noise,
@@ -62,12 +57,19 @@ if __name__ == '__main__':
         pot_value = grovepi.analogRead(pot)
         ranger_value = grovepi.ultrasonicRead(PORT)
         
-        if ranger_value >=  pot_value:
+        if (ranger_value >=  pot_value):
+            if state!=1:
+                textCommand(0x01)
+
             not_in_range_screen(pot_value, ranger_value)
+            state = 1
 
         else:
+            if state!= 2:
+                textCommand(0x01)
+                
             in_range_screen(pot_value,ranger_value)
-
+            state=2
 
 
        # print(grovepi.ultrasonicRead(PORT))
